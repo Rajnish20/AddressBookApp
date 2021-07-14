@@ -1,0 +1,32 @@
+body{
+    margin: 0;
+    height: 100%;
+}
+.header-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 15px 0;
+    background-color: #ffffff;
+    border: 0px solid black;
+}
+.logo-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    border: 0px solid black;
+    margin-left: 100px;
+
+}
+.address-text{
+    font: normal normal bolder 17px/20px Montserrat;
+    color: #008CFF;
+    text-transform: uppercase;
+    opacity: 1;
+    letter-spacing: 0px;
+}
+.book{
+    color: #42515f;
+}
+
