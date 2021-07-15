@@ -24,7 +24,7 @@
     </header>
     <div class="form-content">
         <div class="form-header">PERSON ADDRESS FORM</div>
-        <form class="form">
+        <form class="form" action="#" onreset="resetForm()" onsubmit="save()">
             <div class="row-content">
                 <label class="label text" for="name">Full Name</label>
                 <input class="input" type="text" id="name" name="name" placeholder="" required>
@@ -37,13 +37,12 @@
             </div>
             <div class="row-content">
                 <label class="label text" for="address">Address</label>
-                <textarea id="address" class="input"name="Address" placeholder="" style="height:80px"></textarea>
+                <textarea id="address" class="input" name="address" placeholder="" style="height:80px"></textarea>
             </div>
             <div class="row-content-address">
                 <div class="city">
                     <label class="label text" for="City">City</label>
-                    <div id="city">
-                    <select id="city" name="City">
+                    <select id="city" name="city">
                         <option value="new delhi">New Delhi</option>
                         <option value="mumbai">Mumbai</option>
                         <option value="pune">Pune</option>
@@ -52,12 +51,10 @@
                         <option value="gurgaon">Gurgaon</option>
                         <option value="noida">Noida</option>
                     </select>
-                    </div>
                 </div>
                 <div class="state">
                     <label class="label text" for="State">State</label>
-                    <div id ="state"></div>
-                    <select id="state" name="State">
+                    <select id="state" name="state">
                         <option value="delhi">Delhi</option>
                         <option value="maharashtra">Maharashtra</option>
                         <option value="haryana">Haryana</option>

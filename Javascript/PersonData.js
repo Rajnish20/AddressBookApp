@@ -44,10 +44,23 @@ class Person{
         this._city = city;
     }
 
+    get state(){
+        return this._state;
+    }
+    set state(state){
+        this._state = state;
+    }
+
     get pinCode(){
         return this._pinCode;
     }
     set pinCode(pinCode){
         this._pinCode = pinCode;
     }
+
+    toString(){
+        return  "id=" + this.id +", Full Name='" + this.fullName + " , Address='" + this.address + " , City='"
+        + this.city + " , State='" + this.state + " , PinCode='" + this.pinCode;
+    }
+
 }

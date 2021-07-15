@@ -21,5 +21,47 @@ window.addEventListener('DOMContentLoaded',(event) => {
             numberError.textContent = e;
         }
     })
-
 });
+
+const save = () => {
+    try{
+        let addressBookData = createEmployeePayroll();
+        createAndUpdateStorage(addressBookData);
+    }catch(e){
+        return;
+    }
+}
+
+const createEmployeePayroll = () => {
+    let addressBookData = new Person();
+    addressBookData.fullName = getInputValueById('#name');
+    addressBookData.phoneNumber = getInputValueById('#number')
+    addressBookData.address = getInputValueById('#address');
+    addressBookData.city = getInputValueById('#city');
+    addressBookData.state = getInputValueById('#state');
+    addressBookData.pinCode = getInputValueById('#pinCode');
+    alert(addressBookData.toString());
+    return addressBookData;
+}
+
+
+const getInputValueById = (id) => {
+    let value = document.querySelector(id).value;
+    return value;
+}
+
+function createAndUpdateStorage(addressBookData) {
+    let addressBookList = JSON.parse(localStorage.getItem("AddressBookList"));
+    if(addressBookList != undefined){
+        addressBookList.push(addressBookData);
+    }else{
+        addressBookList = [addressBookData];
+    }
+    alert(addressBookData.toString());
+    localStorage.setItem("AddressBookList", JSON.stringify(addressBookList));
+}
+
+const setTextValue = (id,value) => {
+    const element = document.querySelector(id);
+    element.value = value;
+}
