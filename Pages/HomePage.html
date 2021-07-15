@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;1,500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="../CSS/HomePage.css" rel="Stylesheet">
+    <link href="https://fonts.google.com/specimen/Lato" rel="stylesheet">
 </head>
 <body>
     <header class="header-content">
@@ -19,6 +20,51 @@
             </div>
         </div>
     </header>
-    
+    <div class="main-content">
+        <div class="main-header">
+            <div class="person-details-text">
+                Person Details 
+            </div>
+            <a href="../Pages/PersonForm.html" class="add-button">
+            <img src="../Assets/add-24px.svg" alt="">Add Person</a>
+        </div> <!--main-header-->
+        <div class="table-main">
+            <table id ="display" class="table">
+                <tr>
+                    <th>Full Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>PinCode</th>
+                    <th>Phone Number</th>
+                    <th>Actions</th>
+                </tr>
+                <tr>
+                    <td>Dhruv</td>
+                    <td>Nihal Vihar Nihal Vihar</td>
+                    <td>New Delhi</td>
+                    <td>Delhi</td>
+                    <td>110041</td>
+                    <td>917838288091</td>
+                    <td>
+                        <img src="../Assets/delete-black-18dp.svg" id="1" onclick="remove(this)">
+                        <img src="../Assets/create-black-18dp.svg" id="1" onclick="update(this)">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Dhruv</td>
+                    <td>Nihal Vihar</td>
+                    <td>New Delhi</td>
+                    <td>Delhi</td>
+                    <td>110041</td>
+                    <td>917838288091</td>
+                    <td>
+                        <img src="../Assets/delete-black-18dp.svg" id="1" onclick="remove(this)">
+                        <img src="../Assets/create-black-18dp.svg" id="1" onclick="update(this)">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div> <!--main-content-->
 </body>
 </html>
