@@ -44,6 +44,15 @@ const createEmployeePayroll = () => {
     return addressBookData;
 }
 
+const resetForm = () => {
+    setValue('#name','');
+    setValue('#number','');
+    setValue('#address','');
+    setValue('#city','Select City');
+    setValue('#state','Select State');
+    setValue('#pinCode','Enter PinCode');
+} 
+
 
 const getInputValueById = (id) => {
     let value = document.querySelector(id).value;
@@ -62,6 +71,11 @@ function createAndUpdateStorage(addressBookData) {
 }
 
 const setTextValue = (id,value) => {
+    const element = document.querySelector(id);
+    element.value = value;
+}
+
+const setValue = (id,value) => {
     const element = document.querySelector(id);
     element.value = value;
 }
