@@ -34,6 +34,7 @@ const save = () => {
 
 const createEmployeePayroll = () => {
     let addressBookData = new Person();
+    addressBookData.id = getNewId();
     addressBookData.fullName = getInputValueById('#name');
     addressBookData.phoneNumber = getInputValueById('#number')
     addressBookData.address = getInputValueById('#address');
@@ -42,6 +43,13 @@ const createEmployeePayroll = () => {
     addressBookData.pinCode = getInputValueById('#pinCode');
     alert(addressBookData.toString());
     return addressBookData;
+}
+
+const getNewId = () => {
+    let personID = localStorage.getItem("PersonID");
+    personID = !personID ? 1 : (parseInt(personID) + 1).toString();
+    localStorage.setItem("PersonID",personID);
+    return personID;
 }
 
 const resetForm = () => {
