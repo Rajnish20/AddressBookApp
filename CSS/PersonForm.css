@@ -20,16 +20,38 @@ body{
 
 }
 .address-text{
-    font: normal normal bolder 17px/20px Montserrat;
+    font: normal normal bold 18px/20px Montserrat;
     color: #008CFF;
     text-transform: uppercase;
     opacity: 1;
     letter-spacing: 0px;
 }
 .book{
+    font: normal normal bold 17px/20px Montserrat;
     color: #42515f;
 }
 
+.form-head{
+    display: flex;
+    align-items: center;
+    background: #008CFF;
+    justify-content: space-between;
+    margin-top: 15px;
+    border-start-start-radius: 8px;
+    border-start-end-radius: 8px;
+    width: 74.8%;
+}
+
+.form-head img{
+    background-color: white;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.form-head img:hover{
+    transform: scale(1.5);
+    transition: .2s;
+}
 .form-content{
     min-height: calc(100% - 80px);
     background-color: #f7f7f7;
@@ -56,16 +78,10 @@ body{
     letter-spacing: 0px;
     text-transform: uppercase;
     opacity: 1;
-    margin-top: 15px;
     padding-bottom: 13px;
     padding-top: 13px;
-    text-align: center;
     color: white;
-    width: 74.8%;
-    background: #008CFF;
-    border-start-start-radius: 8px;
-    border-start-end-radius: 8px;
-    
+    margin-left: 330px;
 }
 
 .row-content{

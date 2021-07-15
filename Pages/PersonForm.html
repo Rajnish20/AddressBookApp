@@ -8,14 +8,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;1,500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="../CSS/PersonForm.css" rel="Stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet">
     <script src="../Javascript/Form.js"></script>
     <script src="../Javascript/PersonData.js"></script>
+    <script src="../Javascript/siteProperties.js"></script>
 
 </head>
 <body>
     <header class="header-content">
         <div class="logo-content">
-            <img src="../assets/logo.png" alt="Employee logo">
+            <img src="../Assets/book.png" width="60" height="55" alt="Address Book Logo">
             <div>
                 <span class="address-text">ADDRESS</span><br>
                 <span class="address-text book">BOOK</span>
@@ -23,8 +25,11 @@
         </div>
     </header>
     <div class="form-content">
-        <div class="form-header">PERSON ADDRESS FORM</div>
-        <form class="form" action="#" onreset="resetForm()" onsubmit="save()">
+        <div class="form-head">
+            <div class="form-header">PERSON ADDRESS FORM</div>
+            <img src="../Assets/cross+delete+icon-1320196185584855591.png" width="28"s height="28" onclick="cancel()">
+        </div>
+        <form class="form" action="#" onreset="resetForm()" onsubmit="save(event)">
             <div class="row-content">
                 <label class="label text" for="name">Full Name</label>
                 <input class="input" type="text" id="name" name="name" placeholder="" required>

@@ -2,6 +2,7 @@ let personList;
 window.addEventListener('DOMContentLoaded',(event) => {
     personList = getPersonDataFromStorage();
     createInnerHtml();
+    localStorage.removeItem('editPerson');
 });
 
 const getPersonDataFromStorage = () => {
@@ -32,6 +33,7 @@ const createInnerHtml = () => {
     document.querySelector('#display').innerHTML = innerHtml;
 }
 
+
 const remove = (node) => {
     let personData = personList.find(person => person._id == node.id);
     if(!personData) return;
@@ -40,4 +42,11 @@ const remove = (node) => {
     personList.splice(index,1);
     localStorage.setItem("AddressBookList",JSON.stringify(personList));
     createInnerHtml();
+}
+
+const update = (node) => {
+    let personData = personList.find(person => person._id == node.id);
+    if(!personData) return;
+    localStorage.setItem('editPerson',JSON.stringify(personData));
+    window.location.replace(site_properties.form);
 }
