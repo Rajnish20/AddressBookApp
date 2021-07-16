@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded',(event) => {
     const textError = document.querySelector('.text-error');
     name.addEventListener('input',function(){
         try{
-            new Person().fullName = name.value;
+            checkName(name.value);
             textError.textContent = "";
         }catch(e){
             textError.textContent = e;
@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded',(event) => {
     const numberError = document.querySelector('.number-error');
     phnNumber.addEventListener('input',function(){
         try{
-            new Person().phoneNumber = phnNumber.value;
+            checkNumber(phnNumber.value);
             numberError.textContent = "";
         }catch(e){
             numberError.textContent = e;
@@ -41,6 +41,9 @@ const save = (event) => {
 }
 
 const setPersonObj = () => {
+    if(!isUpdate && site_properties.use_local_storage.match("true")){
+        personObj.id = getNewId();
+    }
     personObj._fullName = getInputValueById('#name');
     personObj._phoneNumber = getInputValueById('#number')
     personObj._address = getInputValueById('#address');
@@ -52,26 +55,21 @@ const setPersonObj = () => {
 function createAndUpdateStorage() {
     let addressBookList = JSON.parse(localStorage.getItem("AddressBookList"));
     if(addressBookList){
-        let personData = addressBookList.find(person => person._id == personObj._id);
+        let personData = addressBookList.find(person => person.id == personObj.id);
         if(!personData){
-            addressBookList.push(createPersonData());
+            addressBookList.push(personObj);
         }else{
-            const index = addressBookList.map(person => person.id).indexOf(personData._id);
-            addressBookList.splice(index,1,createPersonData(personData._id));
+            const index = addressBookList.map(person => person.id)
+                                         .indexOf(personData.id);
+            addressBookList.splice(index,1,personObj);
         }
     }else{
-        addressBookList = [createPersonData()];
+        addressBookList = [personObj];
     }
     localStorage.setItem("AddressBookList", JSON.stringify(addressBookList));
 }
 
-const createPersonData = (id) => {
-    let person = new Person();
-    if(!id) person.id = getNewId();
-    else person.id = id;
-    setPersonData(person);
-    return person;
-}
+
 const getNewId = () => {
     let personID = localStorage.getItem("PersonID");
     personID = !personID ? 1 : (parseInt(personID) + 1).toString();
@@ -79,14 +77,6 @@ const getNewId = () => {
     return personID;
 }
 
-setPersonData = (person) => {
-    person.fullName = personObj._fullName;
-    person.address = personObj._address;
-    person.city = personObj._city;
-    person.state = personObj._state;
-    person.phoneNumber = personObj._phoneNumber;
-    person.pinCode = personObj._pinCode;
-}
 
 const resetForm = () => {
     setValue('#name','');

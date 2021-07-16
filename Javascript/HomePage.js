@@ -24,8 +24,8 @@ const createInnerHtml = () => {
           <td>${personData._pinCode}</td>
           <td>${personData._phoneNumber}</td>
           <td>
-           <img id="${personData._id}" src="../assets/delete-black-18dp.svg" onclick="remove(this)" alt="delete">
-           <img id="${personData._id}" src="../assets/create-black-18dp.svg" onclick="update(this)" alt="edit">
+           <img id="${personData.id}" src="../assets/delete-black-18dp.svg" onclick="remove(this)" alt="delete">
+           <img id="${personData.id}" src="../assets/create-black-18dp.svg" onclick="update(this)" alt="edit">
           </td>
         </tr>
        `;
@@ -35,17 +35,17 @@ const createInnerHtml = () => {
 
 
 const remove = (node) => {
-    let personData = personList.find(person => person._id == node.id);
+    let personData = personList.find(person => person.id == node.id);
     if(!personData) return;
-    const index = personList.map(person => person._id)
-                                .indexOf(personData._id);
+    const index = personList.map(person => person.id)
+                                .indexOf(personData.id);
     personList.splice(index,1);
     localStorage.setItem("AddressBookList",JSON.stringify(personList));
     createInnerHtml();
 }
 
 const update = (node) => {
-    let personData = personList.find(person => person._id == node.id);
+    let personData = personList.find(person => person.id == node.id);
     if(!personData) return;
     localStorage.setItem('editPerson',JSON.stringify(personData));
     window.location.replace(site_properties.form);
