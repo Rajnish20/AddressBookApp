@@ -48,8 +48,8 @@ const createOrUpdatePerson = () => {
     let postURL = site_properties.server_url;
     let methodCall = "POST";
     if(isUpdate){
-        let methodCall = "PUT";
-        postURL = postURL + "/" + personObj.id.toString();
+        methodCall = "PUT";
+        postURL = postURL+"/"+personObj.id.toString();
     }
     makeServiceCall(methodCall,postURL,true,personObj)
      .then(responseText => {
@@ -66,7 +66,7 @@ const setPersonObj = () => {
         personObj.id = getNewId();
     }
     personObj._fullName = getInputValueById('#name');
-    personObj._phoneNumber = getInputValueById('#number')
+    personObj._phoneNumber = getInputValueById('#number');
     personObj._address = getInputValueById('#address');
     personObj._city = getInputValueById('#city');
     personObj._state = getInputValueById('#state');
