@@ -1,13 +1,36 @@
 let personList;
 window.addEventListener('DOMContentLoaded',(event) => {
-    personList = getPersonDataFromStorage();
-    createInnerHtml();
-    localStorage.removeItem('editPerson');
+    if(site_properties.use_local_storage.match("true")){
+        getPersonDataFromStorage();
+    }else{
+        getPersonDataFromServer();
+    }
 });
 
+
 const getPersonDataFromStorage = () => {
-    return localStorage.getItem('AddressBookList') ?
+    personList = localStorage.getItem('AddressBookList') ?
                         JSON.parse(localStorage.getItem('AddressBookList')) : [];
+    processPersonDataResponse();
+}
+
+const processPersonDataResponse = () => {
+    createInnerHtml();
+    localStorage.removeItem('editPerson');
+}
+
+const getPersonDataFromServer = () => {
+    makeServiceCall("GET",site_properties.server_url,true)
+    .then(responseText => {
+        personList = JSON.parse(responseText);
+        processPersonDataResponse();
+    })
+    .catch(error => {
+        console.log("GET Error Status "+JSON.stringify(error));
+        personList = [];
+        processPersonDataResponse();
+    });
+
 }
 
 const createInnerHtml = () => {
@@ -40,8 +63,19 @@ const remove = (node) => {
     const index = personList.map(person => person.id)
                                 .indexOf(personData.id);
     personList.splice(index,1);
-    localStorage.setItem("AddressBookList",JSON.stringify(personList));
-    createInnerHtml();
+    if(site_properties.use_local_storage.match("true")){
+        localStorage.setItem("AddressBookList",JSON.stringify(personList));
+        createInnerHtml();
+    }else{
+        const deleteURL = site_properties.server_url+"/"+personData.id.toString();
+        makeServiceCall("DELETE",deleteURL,false)
+         .then(responseText => {
+             createInnerHtml();
+         })
+         .catch(error => {
+             console.log("Delete error status :"+JSON.stringify(error));
+         });
+    }   
 }
 
 const update = (node) => {

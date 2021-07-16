@@ -32,12 +32,33 @@ const save = (event) => {
     event.stopPropagation();
     try{
         setPersonObj();
-        createAndUpdateStorage();
-        resetForm();
-        window.location.replace(site_properties.home_page);
+        if(site_properties.use_local_storage.match("true")){
+            createAndUpdateStorage();
+            resetForm();
+            window.location.replace(site_properties.home_page);
+        }else{
+            createOrUpdatePerson();
+        }
     }catch(e){
         return;
     }
+}
+
+const createOrUpdatePerson = () => {
+    let postURL = site_properties.server_url;
+    let methodCall = "POST";
+    if(isUpdate){
+        let methodCall = "PUT";
+        postURL = postURL + "/" + personObj.id.toString();
+    }
+    makeServiceCall(methodCall,postURL,true,personObj)
+     .then(responseText => {
+         resetForm();
+         window.location.replace(site_properties.home_page);
+     })
+     .catch(error => {
+         throw error;
+     })
 }
 
 const setPersonObj = () => {
